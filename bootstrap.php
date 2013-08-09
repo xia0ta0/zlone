@@ -1,42 +1,82 @@
 <?php
-// System Start Time
-define('START_TIME', microtime(true));
+class Term
+{
+    public $method; 
 
-// System Start Memory
-define('START_MEMORY_USAGE', memory_get_usage());
+    public $uri;
 
-// Extension of all PHP files
-define('EXT', '.php');
+    public $params = array();
 
-// Directory separator (Unix-Style works on all OS)
-define('DS', '/');
+    public $paramNames = array();
 
-// Absolute path to the system folder
-define('SP', realpath(__DIR__) . DS);
+    public function __construct()
+    {
+        $this->method = strtolower($_SERVER['REQUEST_METHOD']);
 
-// Absolute path to the core folder
-define('CP', SP . 'core' . DS);
+        if (!empty($_SERVER['PATH_INFO']))
+        {
+            $this->uri = $_SERVER['PATH_INFO'];
+        }
+        else 
+        {
+            $this->uri = (strpos($_SERVER['REQUEST_URI'], '?') > 0) ? strstr($_SERVER['REQUEST_URI'], '?', true) : $_SERVER['REQUEST_URI'];
+        }
+    }
 
-// Is this an AJAX request?
-define('AJAX_REQUEST', strtolower(getenv('HTTP_X_REQUESTED_WITH')) === 'xmlhttprequest');
+    public function route($routes)
+    {
+        foreach($routes as $route => $target)
+        {
+            // Construct a regex for route
+            $patternAsRegex = preg_replace_callback(
+                '#:([\w]+)\+?#',
+                array($this, 'matchesCallback'),
+                str_replace(')', ')?', $route)
+            );
+            if (substr($route, -1) === '/') {
+                $patternAsRegex .= '?';
+            }
 
-// The current site path
-define('PATH', parse_url(getenv('REQUEST_URI'), PHP_URL_PATH));
+            // Cache URL params' names and values if this route matches the current HTTP request
+            if (preg_match('#^' . $patternAsRegex . '$#', $this->uri, $paramValues)) 
+            {
+                // module and action 
+                list($this->module, $this->action) = explode('/', $target);
 
-// Load core. 
-require(CP . 'Common'     . EXT);
-require(CP . 'Controller' . EXT);
-require(CP . 'Dispatch'   . EXT);
-require(CP . 'Error'      . EXT);
-require(CP . 'Model'      . EXT);
-require(CP . 'Router'     . EXT);
+                // params
+                foreach ($this->paramNames as $name) 
+                {
+                    if (isset($paramValues[$name])) 
+                    {
+                        if (isset($this->paramNamesPath[ $name ])) 
+                        {
+                            $this->params[$name] = explode('/', urldecode($paramValues[$name]));
+                        } 
+                        else 
+                        {
+                            $this->params[$name] = urldecode($paramValues[$name]);
+                        }
+                    }
+                }
+                break;
+            }
+        }
+        echo $this->module;
+    }
 
-// Default timezone of server
-date_default_timezone_set('UTC');
+    protected function matchesCallback($m)
+    {
+        $this->paramNames[] = $m[1];
+        return '(?P<' . $m[1] . '>[^/]+)';
+    }
 
-// multibyte encoding
-mb_internal_encoding('UTF-8');
+    public function run()
+    {
+    
+    }
 
-// Enable global error handling
-set_error_handler(array('Error', 'handler'));
-register_shutdown_function(array('Error', 'fatal'));
+    private static function is_xhr_request()
+    {
+        return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest';
+    }
+}
