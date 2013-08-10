@@ -4,8 +4,9 @@ require('bootstrap.php');
 $app = new Term();
 
 $app->route(array(
-    '/' => 'index/index',
+    '/' => 'my/index',
     '/login' => 'auth/login'
+    '/reg' => 'auth/reg'
 ));
 
 $app->run();
