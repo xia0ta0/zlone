@@ -5,7 +5,7 @@ $app = new Term();
 
 $app->route(array(
     '/' => 'my/index',
-    '/login' => 'auth/login'
+    '/login' => 'auth/login',
     '/reg' => 'auth/reg'
 ));
 

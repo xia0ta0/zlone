@@ -77,11 +77,7 @@ class Term
         require(SP . 'module/' . $this->module . '/control.php');
         $className  = ucfirst($this->module) . 'Controller'; 
 
-        $controller = new $className();
-        $controller->method = $this->method;
-        $controller->module = $this->module;
-        $controller->action = $this->action;
-
+        $controller = new $className($this->method, $this->module, $this->action);
         $controller->{$this->action}();
     }
 

@@ -6,8 +6,11 @@ class Controller
     public $action;
     public $method;
 
-    public function __construct()
+    public function __construct($method, $module, $action)
     {
+        $this->method = $method;
+        $this->module = $module;
+        $this->action = $action;
         $this->checkPriv();
     }
 
