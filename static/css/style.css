@@ -1,0 +1,29 @@
+.auth{
+    width:310px;
+    margin:100px auto 0;
+}
+.auth hd h1{
+    text-indent:-9999px;
+    overflow:hidden;
+    width:260px;
+    height:50px;
+    margin:0 auto 50px;
+}
+.auth .form-item{
+    margin-bottom:20px;
+    width:300px;
+}
+.auth .form-item input{
+    width:300px;
+    height:30px;
+}
+.auth .form-item .btn-login{
+    width:305px;
+    height:30px;
+    font-size:20px;
+    font-weight:bold;
+    color:white;
+    cursor:pointer;
+    background:#9fc25b;
+    border:none;
+}

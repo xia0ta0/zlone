@@ -8,9 +8,13 @@ class Controller
 
     public function __construct($method, $module, $action)
     {
-        $this->method = $method;
-        $this->module = $module;
-        $this->action = $action;
+        $this->method  = $method;
+        $this->module  = $module;
+        $this->action  = $action;
+
+        require(SP . 'module/' . $module . '/model.php');
+        $className = ucfirst($this->module). 'Model';
+        $this->$module = new $className();
         $this->checkPriv();
     }
 

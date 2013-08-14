@@ -89,6 +89,7 @@ class Term
 
 function __autoload($className)
 {
+    require(SP . 'class/' . $className . '.php');
 }
 
 /* utils. */
