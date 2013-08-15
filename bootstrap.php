@@ -78,7 +78,7 @@ class Term
         $className  = ucfirst($this->module) . 'Controller'; 
 
         $controller = new $className($this->method, $this->module, $this->action);
-        $controller->{$this->action}();
+        call_user_func_array(array($controller, $this->action), $this->params);
     }
 
     private static function is_xhr_request()

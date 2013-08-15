@@ -3,6 +3,7 @@ class AuthController extends Controller
 {
     public function login($next = '/')
     {
+        var_dump($next);exit;
         if($this->auth->isLogon())
         {
             if(strpos($next, '/login') === false)
@@ -35,10 +36,9 @@ class AuthController extends Controller
 
     }
 
-    public function reg($code)
+    public function reg($code = '')
     {
-        if($this->auth->isLogon()) $this->redirect('/');
-        if(!empty($_POST))
+        if($this->auth->isLogon()) $this->redirect('/'); if(!empty($_POST)) 
         {
             extract($_POST);
             $this->auth->createUser($account);
