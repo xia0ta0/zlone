@@ -95,12 +95,10 @@ function __autoload($className)
 /* utils. */
 function dump()
 {
-	$string = '';
 	foreach(func_get_args() as $value)
-	{
-		$string .= '<pre>' . ($value === NULL ? 'NULL' : (is_scalar($value) ? $value : print_r($value, TRUE))) . "</pre>\n";
+    {
+        echo "<xmp class='a-left'>" . print_r($value, TRUE) . "</xmp>\n";
 	}
-	return $string;
 }
 
 /**

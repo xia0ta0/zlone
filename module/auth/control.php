@@ -3,7 +3,6 @@ class AuthController extends Controller
 {
     public function login($next = '/')
     {
-        var_dump($next);exit;
         if($this->auth->isLogon())
         {
             if(strpos($next, '/login') === false)
@@ -21,12 +20,9 @@ class AuthController extends Controller
             $user = $this->auth->identify($account, $password);
             if($user)
             {
-               $this->redirect($next);
+               die($this->redirect($next));
             }
-            else
-            {
-               $this->redirect('/login');
-            }
+            $this->redirect('/login');
         }
         $this->render();
     }
