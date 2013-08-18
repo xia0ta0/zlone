@@ -97,7 +97,7 @@ function dump()
 {
 	foreach(func_get_args() as $value)
     {
-        echo "<xmp class='a-left'>" . print_r($value, TRUE) . "</xmp>\n";
+        echo "<pre>" . print_r($value, TRUE) . "</pre>\n";
 	}
 }
 

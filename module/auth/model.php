@@ -11,7 +11,7 @@ class AuthModel extends Model
     {
         if(!$account or !$password) return false;
 
-        $user = $this->db->fetchRow("SELECT * FROM user", array('account' => $account)); 
+        $user = $this->dao->select('*')->from('user')->where('account')->eq($account)->fetch();
         if(!$user) return false;
 
         $password = md5($password . $user->join);

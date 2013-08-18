@@ -1,10 +1,10 @@
 <?php
 class Model
 {
-    public $db;
+    public $dao;
 
     function __construct()
     {
-        $this->db = new SimpleSql('localhost', 'root', 'zentao', 'term');
+        $this->dao = new DAO('localhost', 'root', 'zentao', 'term');
     }
 }
