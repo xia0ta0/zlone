@@ -73,12 +73,11 @@ class Term
 
     public function run()
     {
-        require(SP . 'module/common/control.php');
         require(SP . 'module/' . $this->module . '/control.php');
-        $className  = ucfirst($this->module) . 'Controller'; 
+        $className  = ucfirst($this->action) . 'Controller'; 
 
         $controller = new $className($this->method, $this->module, $this->action);
-        call_user_func_array(array($controller, $this->action), $this->params);
+        call_user_func_array(array($controller, $this->method), $this->params);
     }
 
     private static function is_xhr_request()

@@ -1,7 +1,7 @@
 <?php
-class MyController extends Controller
+class IndexController extends Controller
 {
-    public function index()
+    public function get()
     {
         $this->render();
     }
