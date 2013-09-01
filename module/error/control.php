@@ -1,5 +1,5 @@
 <?php
-class BrowseController extends Controller
+class NotFoundController extends Controller
 {
     public function get()
     {

@@ -31,7 +31,7 @@ class Controller
 
     public function render($view = '')
     {
-        if(!$view) $view = $this->action . '.html.php';
+        if(!$view) $view = strtolower($this->action) . '.html.php';
         extract($this->view, EXTR_SKIP);
 
         ob_start();

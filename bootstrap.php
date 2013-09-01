@@ -29,7 +29,7 @@ class Term
     {
         foreach($routes as $route => $target)
         {
-            // Construct a regex for route
+            // Construct a regex for route, from Slim framework.
             $patternAsRegex = preg_replace_callback(
                 '#:([\w]+)\+?#',
                 array($this, 'matchesCallback'),
@@ -61,6 +61,11 @@ class Term
                     }
                 }
                 break;
+            }
+            else
+            {
+                $this->module = 'error';
+                $this->action = 'notFound';
             }
         }
     }

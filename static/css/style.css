@@ -1,3 +1,79 @@
+html{
+  font-size: 100%;
+}
+html, body, div, span, applet, object, iframe,h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,b, u, i, center,input,dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font: 12px 'Helvetica Neue',Helvetica,Arial,sans-serif;
+    min-width: 1020px;
+    color: #333333;
+    background-color: #fff;
+}
+ul, ol {
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.header {
+    background-color: #f3f3f3;
+    background-image: linear-gradient(#f9f9f9, #f3f3f3);
+    text-shadow: 0 1px 0 #fff;
+    border-bottom: 1px solid #e5e5e5;
+    min-width: 1000px;
+}
+.container{
+    width: 980px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 10px;
+}
+.clearfix:before, .clearfix:after {
+    content: " ";
+    display: table;
+}
+.clearfix:after{
+    clear: both;
+}
+.header .logo{
+    display: block;
+    float: left;
+}
+.header .logo a {
+    display: block;
+    width: 64px;
+    height: 100%;
+    overflow: hidden;
+    text-indent: -9999px;
+    background: url("logo-dark.png") 0 center no-repeat;
+}
+.header .search{
+    position: relative;
+    float: left;
+    margin-top: 6px;
+}
+.header .nav li, .header .user li{
+    float:left;
+}
+.header .nav{
+    float: left;
+    top: 0;
+    z-index: 99;
+    width: 211px;
+    transition: opacity 0.2s linear;
+    opacity: 1;
+    z-index: 1;
+}
+.header .user{
+    float: right;
+    margin: 7px 0 0;
+    padding: 0;
+    list-style: none;
+}
 .auth{
     width:310px;
     margin:100px auto 0;
