@@ -19,6 +19,10 @@ ul, ol {
     margin-top: 0;
     margin-bottom: 0;
 }
+a {
+    color: #4183c4;
+    text-decoration: none;
+}
 .header {
     background-color: #f3f3f3;
     background-image: linear-gradient(#f9f9f9, #f3f3f3);
@@ -62,11 +66,20 @@ ul, ol {
 .header .nav{
     float: left;
     top: 0;
+    margin-top: 6px;
     z-index: 99;
     width: 211px;
     transition: opacity 0.2s linear;
     opacity: 1;
     z-index: 1;
+}
+.header .nav li a{
+display: block;
+padding: 5px;
+font-size: 13px;
+font-weight: bold;
+color: #333333;
+transition: all 0.1s ease-in;
 }
 .header .user{
     float: right;
