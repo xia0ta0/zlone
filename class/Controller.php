@@ -15,7 +15,6 @@ class Controller
         require(SP . 'module/' . $module . '/model.php');
         $className = ucfirst($this->module). 'Model';
         $this->$module = new $className();
-        //$this->checkPriv();
     }
 
     public function checkPriv()
